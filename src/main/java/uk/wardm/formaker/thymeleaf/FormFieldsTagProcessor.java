@@ -17,20 +17,16 @@ import uk.wardm.formaker.model.FormObjectMeta;
 public class FormFieldsTagProcessor extends AbstractAttributeModelProcessor {
     private static final String FORM_OBJECT_ATTR_NAME = "form";
     private static final int PRECEDENCE = 10000;
-    private static final String DEFAULT_FIELDS_FRAGMENT_REF = "partials/forms::fields(${formMeta})";
     private static final String DEFAULT_FORM_META_VAR_NAME = "formMeta";
-    private String fieldsFragmentRef;
     private String formMetaVarName;
 
     public FormFieldsTagProcessor(final String dialectPrefix) {
         this(
             dialectPrefix,
-            DEFAULT_FIELDS_FRAGMENT_REF,
             DEFAULT_FORM_META_VAR_NAME);
     }
 
     public FormFieldsTagProcessor(final String dialectPrefix,
-                                  final String fieldsFragmentRef,
                                   final String formMetaVarName) {
         super(
                 TemplateMode.HTML,     // This processor will apply only to HTML mode
@@ -42,7 +38,6 @@ public class FormFieldsTagProcessor extends AbstractAttributeModelProcessor {
                 PRECEDENCE,            // Precedence (inside dialect's precedence)
                 true);                 // Remove the matched attribute afterwards
 
-        this.fieldsFragmentRef = fieldsFragmentRef;
         this.formMetaVarName = formMetaVarName;
     }
 
@@ -63,7 +58,7 @@ public class FormFieldsTagProcessor extends AbstractAttributeModelProcessor {
 
         // Form descriptor
         FormMeta formMeta = new FormObjectMeta(formPojo);
-        structureHandler.setLocalVariable(formMetaVarName, formMeta);
+//        structureHandler.setLocalVariable(formMetaVarName, formMeta);
         IModelFactory modelFactory = context.getModelFactory();
         ComponentRenderer renderer = new DefaultComponentRenderer();
 

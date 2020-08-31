@@ -5,10 +5,10 @@ import org.thymeleaf.model.AttributeValueQuotes;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
 import org.unbescape.html.HtmlEscape;
-import uk.wardm.formaker.TextBox;
 import uk.wardm.formaker.model.Component;
 import uk.wardm.formaker.model.input.*;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,19 +28,14 @@ public class DefaultComponentRenderer implements ComponentRenderer {
 
             String id = inputField.getName();
             model.add(modelFactory.createOpenElementTag("label", "for", HtmlEscape.escapeHtml5(id)));
-            // Do same for this as for placeholders
-            String labelText = context.getMessage(this.getClass(), inputField.getLabel(), new Object[]{}, true);
+
+
+            String labelText = resolveMessage(context, inputField.getLabel(), inputField.getName());
             model.add(modelFactory.createText(HtmlEscape.escapeHtml5(labelText)));
             model.add(modelFactory.createCloseElementTag("label"));
 
-            // The placeholder key(s) should be in the model
-            // Nothing should be computed here - so it can be rendered by any renderer (e.g. json) and produce the same results
             String fqPlaceholderKey = inputField.getLabel() + ".placeholder";
-            String placeholderText = context.getMessage(this.getClass(), fqPlaceholderKey, new Object[]{}, false);
-            if (placeholderText == null) {
-                String genericPlaceholderKey = "fm.fields." + inputField.getName() + ".placeholder";
-                placeholderText = context.getMessage(this.getClass(), genericPlaceholderKey, new Object[]{}, true);
-            }
+            String placeholderText = resolveMessage(context, fqPlaceholderKey, "");
 
             if (inputField instanceof TextBoxField) {
                 renderTextBox(inputField, placeholderText, modelFactory, model);
@@ -68,6 +63,34 @@ public class DefaultComponentRenderer implements ComponentRenderer {
             }
             return model;
         }
+    }
+
+    // Resolve the message - may return null if no matching property.
+    private String resolveMessage(ITemplateContext context, String fqKey, String defaultValue) {
+        // TODO: cache by fqKey
+        final Object[] emptyParams = new Object[0];
+        final String prefix = "fm.";
+
+        String[] keyParts = fqKey.split("\\.");
+
+        // Match on fully key, if possible
+        String value = context.getMessage(this.getClass(), fqKey, emptyParams, false);
+        if (value != null) {
+            return value;
+        }
+
+        // Match increasing parts of message key, starting with last part,
+        // e.g. for a.b.c.d match on d, then c.d, etc.
+        for (int i = keyParts.length - 1; i > 0; i--) {
+            String key = String.join(".", Arrays.copyOfRange(keyParts, i, keyParts.length));
+            value = context.getMessage(this.getClass(), key, emptyParams, false);
+            if (value != null) {
+                return value;
+            }
+        }
+
+        // No match, return default
+        return defaultValue;
     }
 
     private void renderTextBox(InputField inputField, String placeholderText, IModelFactory modelFactory, IModel model) {
