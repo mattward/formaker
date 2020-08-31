@@ -22,13 +22,11 @@ Here's an example form allowing a user to keep track of musical equipment they'v
 
 ![A Formaker form rendered by Spring and Thymeleaf](README/Rendered Example.png)
 
+To create a form like this, firstly create your Form Backing Bean:
 
 ```java
 package uk.wardm.poc.mykitchensink.model.action;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import uk.wardm.formaker.Password;
 import uk.wardm.formaker.Range;
 import uk.wardm.formaker.TextBox;
@@ -38,9 +36,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class GearItemChange {
     @Size(min = 1, max = 255)
     private String brand;
@@ -55,6 +50,9 @@ public class GearItemChange {
 
     @Range @Min(1) @Max(5)
     private Integer rating;
+    
+    // ... setters, getters etc. ...
+
 }
 ```
 
@@ -116,6 +114,9 @@ The key here is this line:
 ```html
 <fm:form-fields fm:form="${form}"/>
 ```
+
+This expands to the full list of supported fields on the form.
+
 
 ## Installation and Setup
 
