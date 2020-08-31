@@ -8,9 +8,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FOMDialect extends AbstractProcessorDialect {
-    public FOMDialect() {
-        super("FOM Dialect", "fm", 10000);
+public class FormakerDialect extends AbstractProcessorDialect {
+    public FormakerDialect() {
+        super("Formaker Dialect", "fm", 10000);
     }
 
     @Override
