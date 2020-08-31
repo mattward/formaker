@@ -91,7 +91,7 @@ Define a Thymeleaf template:
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:fm="http://www.wardm.uk/fm">
     <head th:replace="layout::html-head(~{::title})">
-        <title>Add Gear Item</title>
+        <title>Edit Gear Item</title>
     </head>
 
     <body th:replace="layout::body(~{::main})">
