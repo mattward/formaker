@@ -58,8 +58,8 @@ public class GearItemChange {
 
 Add some user defined properties:
 
+messages.properties
 ```properties
-
 brand=Brand
 brand.placeholder=e.g. Yamaha
 
