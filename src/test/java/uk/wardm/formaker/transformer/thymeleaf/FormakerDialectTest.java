@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
+import org.thymeleaf.messageresolver.IMessageResolver;
+import org.thymeleaf.messageresolver.StandardMessageResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
@@ -33,6 +35,21 @@ class FormakerDialectTest {
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.addDialect(new FormakerDialect());
+
+        StandardMessageResolver messageResolver = new StandardMessageResolver();
+        Properties props = new Properties();
+        props.put("firstName", "Field Name Key - label");
+        props.put("firstName.placeholder", "Field Name Key - placeholder");
+
+        props.put("lastName", "Field Name Key - label");
+        props.put("lastName.placeholder", "Field Name Key - placeholder");
+
+        props.put("uk.wardm.formaker.transformer.thymeleaf.FormakerDialectTest$SimpleExampleForm.lastName", "Fully Qualified Key - label");
+        props.put("uk.wardm.formaker.transformer.thymeleaf.FormakerDialectTest$SimpleExampleForm.lastName.placeholder", "Fully Qualified Key - placeholder");
+
+        messageResolver.setDefaultMessages(props);
+
+        templateEngine.setMessageResolver(messageResolver);
     }
 
     @Test
@@ -57,6 +74,15 @@ class FormakerDialectTest {
         final Elements labelFields = doc.getElementsByTag("label");
         assertIterableEquals(fieldNames,
                 labelFields.stream().map(el -> el.attr("for")).collect(Collectors.toList()));
+
+        // First Name
+        assertEquals("Field Name Key - label", labelFields.get(0).text());
+
+        // Last Name
+        assertEquals("Fully Qualified Key - label", labelFields.get(1).text());
+
+        // Email Address - nothing in properties, defaults to field name
+        assertEquals("emailAddress", labelFields.get(2).text());
     }
 
     private class SimpleExampleForm {
