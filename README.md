@@ -141,8 +141,8 @@ You will need to register the Thymeleaf dialect:
 public class MvcConfig implements WebMvcConfigurer {
     // ... other config ...
     @Bean
-    public FOMDialect formObjectModelDialect() {
-        return new FOMDialect();
+    public FormakerDialect formObjectModelDialect() {
+        return new FormakerDialect();
     }
 }
 ```
