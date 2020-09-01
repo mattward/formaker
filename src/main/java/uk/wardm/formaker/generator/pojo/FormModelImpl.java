@@ -1,20 +1,20 @@
 package uk.wardm.formaker.generator.pojo;
 
-import uk.wardm.formaker.model.FormMeta;
-import uk.wardm.formaker.model.input.InputField;
+import uk.wardm.formaker.model.Form;
+import uk.wardm.formaker.model.InputField;
 
 import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * A {@link FormMeta} (form object model) that describes
- * a form based on a POJO object.
+ * A {@link Form} (form object model) that describes
+ * a form based on a POJO class form definition.
  */
-public class FormObjectMeta implements FormMeta {
+public class FormModelImpl implements Form {
     private final Map<String, InputField> fields = new LinkedHashMap<>();
     private final ComponentFactory componentFactory = new ComponentFactoryImpl();
 
-    public FormObjectMeta(Object target) {
+    public FormModelImpl(Object target) {
         initFields(target.getClass());
     }
 

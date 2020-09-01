@@ -1,9 +1,9 @@
 package uk.wardm.formaker.generator.pojo;
 
-import uk.wardm.formaker.model.input.DateField;
-import uk.wardm.formaker.model.input.InputField;
-import uk.wardm.formaker.model.input.NumberField;
-import uk.wardm.formaker.model.input.TextField;
+import uk.wardm.formaker.model.DateField;
+import uk.wardm.formaker.model.InputField;
+import uk.wardm.formaker.model.NumberField;
+import uk.wardm.formaker.model.TextField;
 
 import java.time.LocalDate;
 import java.util.HashMap;

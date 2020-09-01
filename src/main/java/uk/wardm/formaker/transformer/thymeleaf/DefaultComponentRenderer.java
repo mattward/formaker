@@ -5,8 +5,7 @@ import org.thymeleaf.model.AttributeValueQuotes;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
 import org.unbescape.html.HtmlEscape;
-import uk.wardm.formaker.model.Component;
-import uk.wardm.formaker.model.input.*;
+import uk.wardm.formaker.model.*;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

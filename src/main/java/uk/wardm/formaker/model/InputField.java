@@ -1,4 +1,4 @@
-package uk.wardm.formaker.model.input;
+package uk.wardm.formaker.model;
 
 import lombok.Builder;
 import lombok.Data;
