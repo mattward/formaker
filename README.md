@@ -60,53 +60,24 @@ Add some user defined properties:
 
 ```properties
 
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.brand=Brand
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.brand.placeholder=e.g. Yamaha
+brand=Brand
+brand.placeholder=e.g. Yamaha
 
+# Fully qualified message keys (below) will take precedence over short keys (above)
 uk.wardm.poc.mykitchensink.model.action.GearItemChange.model=Model
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.model.placeholder=e.g. MU50-XG
-
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.serialNumber=Serial Number
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.serialNumber.placeholder=e.g. 1234-200-300-400
-
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.purchased=Purchase Date
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.purchased.placeholder=23/11/2000
-
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.rating=Rating (bad to good)
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.rating.placeholder=1-5 star rating
-
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.quantity=Quantity
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.quantity.placeholder=e.g. 1
-
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.secret=Secret
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.secret.placeholder=Super secret password
-
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.notes=Notes
-uk.wardm.poc.mykitchensink.model.action.GearItemChange.notes.placeholder=Anything you like
+GearItemChange.model.placeholder=e.g. MU50-XG
 ```
 
 Define a Thymeleaf template:
 ```html
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:fm="http://www.wardm.uk/fm">
-    <head th:replace="layout::html-head(~{::title})">
-        <title>Edit Gear Item</title>
-    </head>
-
-    <body th:replace="layout::body(~{::main})">
-        <main>
-            <h1>Gear Item</h1>
-            <form action="#" th:object="${form}" th:action="@{/gear/edit(id=${gearId})}" method="post">
-                <fm:form-fields fm:form="${form}"/>
-                <div>
-                    <input class="btn btn-primary" type="submit" value="Save">
-                    <a th:href="@{/gear}" class="btn btn-secondary">Cancel</a>
-                </div>
-            </form>
-        </main>
-    </body>
-</html>
+<h1>Gear Item</h1>
+<form action="#" th:object="${form}" th:action="@{/gear/edit(id=${gearId})}" method="post">
+    <fm:form-fields fm:form="${form}"/>
+    <div>
+        <input class="btn btn-primary" type="submit" value="Save">
+        <a th:href="@{/gear}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
 ```
 
 The key here is this line:
