@@ -65,7 +65,7 @@ brand.placeholder=e.g. Yamaha
 
 # Fully qualified message keys (below) will take precedence over short keys (above)
 uk.wardm.poc.mykitchensink.model.action.GearItemChange.model=Model
-GearItemChange.model.placeholder=e.g. MU50-XG
+uk.wardm.poc.mykitchensink.model.action.GearItemChange.model.placeholder=e.g. MU50-XG
 ```
 
 Define a Thymeleaf template:
