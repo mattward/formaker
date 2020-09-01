@@ -20,7 +20,7 @@ markup where needed.
  
 Here's an example form allowing a user to keep track of musical equipment they've spent all their money on:
 
-![A Formaker form rendered by Spring and Thymeleaf](README/Rendered Example.png)
+![A Formaker form rendered by Spring and Thymeleaf](README/RenderedExample.png)
 
 To create a form like this, firstly create your Form Backing Bean:
 
