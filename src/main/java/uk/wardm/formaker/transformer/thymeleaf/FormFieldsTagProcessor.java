@@ -1,4 +1,4 @@
-package uk.wardm.formaker.thymeleaf;
+package uk.wardm.formaker.transformer.thymeleaf;
 
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
@@ -12,7 +12,7 @@ import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
 import uk.wardm.formaker.model.Component;
 import uk.wardm.formaker.model.FormMeta;
-import uk.wardm.formaker.model.FormObjectMeta;
+import uk.wardm.formaker.generator.pojo.FormObjectMeta;
 
 public class FormFieldsTagProcessor extends AbstractAttributeModelProcessor {
     private static final String FORM_OBJECT_ATTR_NAME = "form";

@@ -27,9 +27,7 @@ To create a form like this, firstly create your Form Backing Bean:
 ```java
 package uk.wardm.poc.mykitchensink.model.action;
 
-import uk.wardm.formaker.Password;
-import uk.wardm.formaker.Range;
-import uk.wardm.formaker.TextBox;
+import uk.wardm.formaker.annotation.Range;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -101,9 +99,10 @@ The easiest way to use the library is from maven or gradle:
 <dependency>
     <groupId>uk.wardm.formaker</groupId>
     <artifactId>formaker</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${formaker.version}</version>
 </dependency>
 ```
+Taking care to set `${formaker.version}` to the release required of course.
 
 You will need to register the Thymeleaf dialect:
 

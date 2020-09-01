@@ -1,4 +1,4 @@
-package uk.wardm.formaker.thymeleaf;
+package uk.wardm.formaker.transformer.thymeleaf;
 
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;

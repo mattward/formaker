@@ -1,4 +1,4 @@
-package uk.wardm.formaker;
+package uk.wardm.formaker.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

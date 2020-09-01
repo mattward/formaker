@@ -1,9 +1,10 @@
-package uk.wardm.formaker.model;
+package uk.wardm.formaker.generator.pojo;
 
-import uk.wardm.formaker.Exclude;
-import uk.wardm.formaker.Password;
-import uk.wardm.formaker.Range;
-import uk.wardm.formaker.TextBox;
+import uk.wardm.formaker.annotation.Exclude;
+import uk.wardm.formaker.annotation.Password;
+import uk.wardm.formaker.annotation.Range;
+import uk.wardm.formaker.annotation.TextBox;
+import uk.wardm.formaker.model.Component;
 import uk.wardm.formaker.model.input.*;
 
 import javax.validation.constraints.Max;

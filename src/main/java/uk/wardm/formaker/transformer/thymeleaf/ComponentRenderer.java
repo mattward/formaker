@@ -1,4 +1,4 @@
-package uk.wardm.formaker.thymeleaf;
+package uk.wardm.formaker.transformer.thymeleaf;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.IModel;

@@ -1,4 +1,4 @@
-package uk.wardm.formaker.model;
+package uk.wardm.formaker.generator.pojo;
 
 import uk.wardm.formaker.model.input.DateField;
 import uk.wardm.formaker.model.input.InputField;

@@ -1,5 +1,6 @@
-package uk.wardm.formaker.model;
+package uk.wardm.formaker.generator.pojo;
 
+import uk.wardm.formaker.model.FormMeta;
 import uk.wardm.formaker.model.input.InputField;
 
 import java.lang.reflect.Field;
