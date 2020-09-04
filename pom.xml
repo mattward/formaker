@@ -6,7 +6,7 @@
 
     <groupId>uk.wardm</groupId>
     <artifactId>formaker</artifactId>
-    <version>1.0-alpha</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>Formaker</name>
     <description>Render forms from Java POJOs + annotations</description>
