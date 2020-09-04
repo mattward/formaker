@@ -16,6 +16,10 @@ markup where needed.
 
 > Styling: Currently the styling is hardcoded for Bootstrap 4 - I plan to make this more flexible.
 
+## License
+
+Formaker is Open Source Software released under the MIT License. See the _LICENSE_ file for details.
+
 ## Example Form
  
 Here's an example form allowing a user to keep track of musical equipment they've spent all their money on:
@@ -89,20 +93,18 @@ This expands to the full list of supported fields on the form.
 
 ## Installation and Setup
 
-> The library is not yet in Maven Central. The way to use it at the moment is to
-> clone the repository and then `mvn install` it - this makes it available to your project.
-> I hope to change this soon.
+> **WARNING:** This is alpha software, and as such should not be used on production systems.
 
 The easiest way to use the library is from maven or gradle:
 
 ```xml
 <dependency>
-    <groupId>uk.wardm.formaker</groupId>
-    <artifactId>formaker</artifactId>
-    <version>${formaker.version}</version>
+  <groupId>uk.wardm</groupId>
+  <artifactId>formaker</artifactId>
+  <version>1.0-alpha</version>
 </dependency>
 ```
-Taking care to set `${formaker.version}` to the release required of course.
+
 
 You will need to register the Thymeleaf dialect:
 
