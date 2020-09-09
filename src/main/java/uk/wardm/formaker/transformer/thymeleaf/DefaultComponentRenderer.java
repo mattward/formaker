@@ -1,13 +1,16 @@
 package uk.wardm.formaker.transformer.thymeleaf;
 
+import javassist.ClassMap;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.AttributeValueQuotes;
 import org.thymeleaf.model.IModel;
 import org.thymeleaf.model.IModelFactory;
 import org.unbescape.html.HtmlEscape;
 import uk.wardm.formaker.model.*;
+import uk.wardm.formaker.model.Component;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,7 +40,11 @@ public class DefaultComponentRenderer implements ComponentRenderer {
             String placeholderText = resolveMessage(context, fqPlaceholderKey, "");
 
             if (inputField instanceof TextBoxField) {
-                renderTextBox(inputField, placeholderText, modelFactory, model);
+                renderTextBox(((TextBoxField) inputField), placeholderText, modelFactory, model);
+            }
+            else if (inputField instanceof ChoiceField) {
+                // placeholder not needed, but need to resolve text options
+                renderChoiceField((ChoiceField) inputField, placeholderText, modelFactory, model);
             }
             else {
                 renderTextField(inputField, placeholderText, modelFactory, model);
@@ -92,7 +99,7 @@ public class DefaultComponentRenderer implements ComponentRenderer {
         return defaultValue;
     }
 
-    private void renderTextBox(InputField inputField, String placeholderText, IModelFactory modelFactory, IModel model) {
+    private void renderTextBox(TextBoxField inputField, String placeholderText, IModelFactory modelFactory, IModel model) {
         Map<String, String> attrs = new LinkedHashMap<>();
         attrs.put("placeholder", HtmlEscape.escapeHtml5(placeholderText));
         attrs.put("th:field", "*{" + inputField.getName() + "}");
@@ -117,6 +124,23 @@ public class DefaultComponentRenderer implements ComponentRenderer {
         attrs.put("th:field", "*{" + inputField.getName() + "}");
 
         model.add(modelFactory.createStandaloneElementTag("input", attrs, AttributeValueQuotes.DOUBLE, false, false));
+    }
+
+    private void renderChoiceField(ChoiceField choiceField, String placeholderText, IModelFactory modelFactory, IModel model) {
+        Map<String, String> attrs = new HashMap<>();
+        attrs.put("th:field", "*{" + choiceField.getName() + "}");
+        attrs.put("class", "custom-select");
+        model.add(modelFactory.createOpenElementTag("select", attrs, AttributeValueQuotes.DOUBLE, false));
+
+        // If options are supplied, use them
+        // If it is boolean or Boolean or an enum, then generate options
+        for (String option : new String[] { "true", "false" }) {
+            model.add(modelFactory.createOpenElementTag("option", "value", option));
+            model.add(modelFactory.createText(option));
+            model.add(modelFactory.createCloseElementTag("option"));
+        }
+
+        model.add(modelFactory.createCloseElementTag("select"));
     }
 
     private String htmlInputType(InputField inputField) {

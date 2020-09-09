@@ -1,9 +1,6 @@
 package uk.wardm.formaker.generator.pojo;
 
-import uk.wardm.formaker.model.DateField;
-import uk.wardm.formaker.model.InputField;
-import uk.wardm.formaker.model.NumberField;
-import uk.wardm.formaker.model.TextField;
+import uk.wardm.formaker.model.*;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -29,6 +26,8 @@ public abstract class DefaultFieldTypeConverter {
         map.put(Short.class, NumberField.class);
         map.put(long.class, NumberField.class);
         map.put(Long.class, NumberField.class);
+        map.put(Boolean.class, ChoiceField.class);
+        map.put(boolean.class, ChoiceField.class);
     }
 
     public static Set<Class<?>> supportedTypes() {

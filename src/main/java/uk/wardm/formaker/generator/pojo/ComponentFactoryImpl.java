@@ -1,9 +1,6 @@
 package uk.wardm.formaker.generator.pojo;
 
-import uk.wardm.formaker.annotation.Exclude;
-import uk.wardm.formaker.annotation.Password;
-import uk.wardm.formaker.annotation.Range;
-import uk.wardm.formaker.annotation.TextBox;
+import uk.wardm.formaker.annotation.*;
 import uk.wardm.formaker.model.*;
 
 import javax.validation.constraints.Max;
@@ -44,6 +41,9 @@ public class ComponentFactoryImpl implements ComponentFactory {
         }
         else if (field.isAnnotationPresent(TextBox.class)) {
             return Optional.of(new TextBoxField(field.getName(), label));
+        }
+        else if (field.isAnnotationPresent(Select.class)) {
+            return Optional.of(new ChoiceField(field.getName(), label));
         }
         else if (formType.equals(NumberField.class)) {
             Long min = null;
