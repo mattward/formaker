@@ -7,8 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import uk.wardm.formaker.annotation.Range;
-import uk.wardm.formaker.annotation.Select;
+import uk.wardm.formaker.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -57,5 +56,18 @@ public class BasicFormController {
 
         @Select({ "true", "false" })
         private Boolean weatherIsRainy;
+
+        @TextBox
+        private String description;
+
+        @Exclude
+        private String youWontSeeMe;
+
+        @Exclude
+        private int youWontSeeMeEither;
+
+        @Password
+        @Length(max = 30)
+        private String password;
     }
 }
