@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:fm="http://www.wardm.uk/fm">
+<head th:replace="layout::html-head(~{::title})">
+    <title>Basic Form Test</title>
+</head>
+
+<body th:replace="layout::body(~{::main})">
+<main>
+    <h1>Basic Form Test</h1>
+    <p>This form tests the simple but essential features of forms.</p>
+
+    <form action="#" th:object="${form}" th:action="@{/basic}" method="post">
+        <fm:form-fields fm:form="${form}"/>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Save">
+            <a th:href="@{/}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

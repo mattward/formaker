@@ -22,6 +22,8 @@ public abstract class DefaultFieldTypeConverter {
         map.put(LocalDate.class, DateField.class);
         map.put(int.class, NumberField.class);
         map.put(Integer.class, NumberField.class);
+        map.put(byte.class, NumberField.class);
+        map.put(Byte.class, NumberField.class);
         map.put(short.class, NumberField.class);
         map.put(Short.class, NumberField.class);
         map.put(long.class, NumberField.class);

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::html-head(~{::title})">
+    <title>Formaker</title>
+</head>
+
+<body th:replace="layout::body(~{::main})">
+    <main>
+        <h1>Welcome</h1>
+
+        <p>This is a demo app to serve the following purposes:</p>
+
+        <ol>
+            <li>Allow easy testing and development</li>
+            <li>Demonstrate what the library can do</li>
+            <li>Help document how to use it</li>
+        </ol>
+
+        <p>See the <a th:href="@{/basic}">basic form test</a> for an idea of what field types may be used.</p>
+    </main>
+</body>
+</html>
