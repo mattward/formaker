@@ -8,7 +8,10 @@ import javax.validation.constraints.Min;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ComponentFactoryImpl implements ComponentFactory {
     /**
@@ -43,7 +46,11 @@ public class ComponentFactoryImpl implements ComponentFactory {
             return Optional.of(new TextBoxField(field.getName(), label));
         }
         else if (field.isAnnotationPresent(Select.class)) {
-            return Optional.of(new ChoiceField(field.getName(), label));
+            Select select = field.getAnnotation(Select.class);
+            List<ChoiceField.Option> options = Arrays.stream(select.value()).
+                    map(value -> new ChoiceField.Option(value, value)).
+                    collect(Collectors.toList());
+            return Optional.of(new ChoiceField(field.getName(), label, options));
         }
         else if (formType.equals(NumberField.class)) {
             Long min = null;

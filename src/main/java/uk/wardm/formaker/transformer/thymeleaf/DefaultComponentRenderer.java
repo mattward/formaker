@@ -1,6 +1,5 @@
 package uk.wardm.formaker.transformer.thymeleaf;
 
-import javassist.ClassMap;
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.model.AttributeValueQuotes;
 import org.thymeleaf.model.IModel;
@@ -44,7 +43,7 @@ public class DefaultComponentRenderer implements ComponentRenderer {
             }
             else if (inputField instanceof ChoiceField) {
                 // placeholder not needed, but need to resolve text options
-                renderChoiceField((ChoiceField) inputField, placeholderText, modelFactory, model);
+                renderChoiceField((ChoiceField) inputField, modelFactory, model, context);
             }
             else {
                 renderTextField(inputField, placeholderText, modelFactory, model);
@@ -126,17 +125,18 @@ public class DefaultComponentRenderer implements ComponentRenderer {
         model.add(modelFactory.createStandaloneElementTag("input", attrs, AttributeValueQuotes.DOUBLE, false, false));
     }
 
-    private void renderChoiceField(ChoiceField choiceField, String placeholderText, IModelFactory modelFactory, IModel model) {
+    private void renderChoiceField(ChoiceField choiceField, IModelFactory modelFactory, IModel model, ITemplateContext context) {
         Map<String, String> attrs = new HashMap<>();
         attrs.put("th:field", "*{" + choiceField.getName() + "}");
         attrs.put("class", "custom-select");
         model.add(modelFactory.createOpenElementTag("select", attrs, AttributeValueQuotes.DOUBLE, false));
 
-        // If options are supplied, use them
-        // If it is boolean or Boolean or an enum, then generate options
-        for (String option : new String[] { "true", "false" }) {
-            model.add(modelFactory.createOpenElementTag("option", "value", option));
-            model.add(modelFactory.createText(option));
+        for (ChoiceField.Option option : choiceField.getOptions()) {
+            // TODO: escaping... everywhere!?!?
+            String fqOptionLabelKey = choiceField.getLabel() + ".labels." + option.getLabelKey();
+            String optionText = resolveMessage(context, fqOptionLabelKey, option.getValue().toString());
+            model.add(modelFactory.createOpenElementTag("option", "value", option.getValue().toString()));
+            model.add(modelFactory.createText(optionText));
             model.add(modelFactory.createCloseElementTag("option"));
         }
 

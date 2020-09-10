@@ -40,6 +40,10 @@ public class FormModelImpl implements Form {
 
     private void initFields(Class formClass) {
         for (Field field : formClass.getDeclaredFields()) {
+            /* TODO: should be able to register new types, not just the defaults
+             * Perhaps all supported annotations should be checked too?! So that we can error if an annotation
+             * is used incorrectly?
+             */
             if (DefaultFieldTypeConverter.supports(field.getType())) {
                 componentFactory.createFromField(field).ifPresent(component -> {
                     InputField inputField = (InputField) component;
