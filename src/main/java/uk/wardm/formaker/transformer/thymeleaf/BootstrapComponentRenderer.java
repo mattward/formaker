@@ -92,8 +92,9 @@ public class BootstrapComponentRenderer extends AbstractComponentRenderer {
         for (ChoiceField.Option option : choiceField.getOptions()) {
             // TODO: escaping... everywhere!?!?
             String fqOptionLabelKey = choiceField.getLabel() + ".labels." + option.getLabelKey();
-            String optionText = resolveMessage(context, fqOptionLabelKey, option.getValue().toString());
-            model.add(modelFactory.createOpenElementTag("option", "value", option.getValue().toString()));
+            String optionValueAsText = String.valueOf(option.getValue());
+            String optionText = resolveMessage(context, fqOptionLabelKey, optionValueAsText);
+            model.add(modelFactory.createOpenElementTag("option", "value", optionValueAsText));
             model.add(modelFactory.createText(optionText));
             model.add(modelFactory.createCloseElementTag("option"));
         }

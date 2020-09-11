@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:fm="http://www.wardm.uk/fm">
+<head th:replace="layout::html-head(~{::title})">
+    <title>Further Form Test</title>
+</head>
+
+<body th:replace="layout::body(~{::main})">
+<main>
+    <h1>More!</h1>
+    <p>This shows an Enum being displayed as a &lt;select&gt; &mdash; there's no need to add the @Select
+    annotation as this is the default for enums.</p>
+    <p>Boolean (and boolean primitives) are treated the same way.</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <form action="#" th:object="${form}" th:action="@{/more}" method="post">
+                    <fm:form-fields fm:form="${form}"/>
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="Save">
+                        <a th:href="@{/}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm">
+                <h2>Form values</h2>
+                <div>season: <span th:text="${form.season}">value</span></div>
+                <div>truthIsOutThere: <span th:text="${form.truthIsOutThere}">value</span></div>
+                <div>liesAreOutThere: <span th:text="${form.liesAreOutThere}">value</span></div>
+
+                <div>seasonWithAnnotation: <span th:text="${form.seasonWithAnnotation}">value</span></div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

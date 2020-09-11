@@ -8,6 +8,7 @@ import javax.validation.constraints.Min;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,19 @@ public class ComponentFactoryImpl implements ComponentFactory {
             List<ChoiceField.Option> options = Arrays.stream(select.value()).
                     map(value -> new ChoiceField.Option(value, value)).
                     collect(Collectors.toList());
+            return Optional.of(new ChoiceField(field.getName(), label, options));
+        }
+        else if (formType.equals(ChoiceField.class)) {
+            List<ChoiceField.Option> options = new ArrayList<>();
+            if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
+                options.add(new ChoiceField.Option("true", "true"));
+                options.add(new ChoiceField.Option("false", "false"));
+            }
+            else if (field.getType().isEnum()) {
+                options = Arrays.stream(field.getType().getEnumConstants()).
+                        map(value -> new ChoiceField.Option(value.toString(), value)).
+                        collect(Collectors.toList());
+            }
             return Optional.of(new ChoiceField(field.getName(), label, options));
         }
         else if (formType.equals(NumberField.class)) {
