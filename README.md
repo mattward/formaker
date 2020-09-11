@@ -93,6 +93,16 @@ The key here is this line:
 This expands to the full list of supported fields on the form.
 
 
+## Demo
+
+You can run the demo from within the test source tree, by executing the maven command:
+
+```bash
+mvn exec:java -Dexec.mainClass=uk.wardm.livetest.TestHarnessApp -Dexec.classpathScope=test
+```
+
+You may also run the demo from your favourite IDE, by running the main class `TestHarnessApp`.
+
 ## Installation and Setup
 
 > **WARNING:** This is alpha software, and as such should not be used on production systems.
