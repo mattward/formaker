@@ -103,6 +103,9 @@ mvn exec:java -Dexec.mainClass=uk.wardm.livetest.TestHarnessApp -Dexec.classpath
 
 You may also run the demo from your favourite IDE, by running the main class `TestHarnessApp`.
 
+When the demo is running, you'll be able to use it with your browser at `http://localhost:8080/`
+
+
 ## Installation and Setup
 
 > **WARNING:** This is alpha software, and as such should not be used on production systems.
@@ -132,5 +135,6 @@ public class MvcConfig implements WebMvcConfigurer {
 ```
 
 You should then be able to use it. Note that for the LocalDate support to work, you
-need a suitable date formatter (TODO: expand on this)
+need a suitable date formatter - one is included and configured in with the demo (see above).
+
 
