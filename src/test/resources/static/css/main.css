@@ -12,3 +12,7 @@ body {
 .error {
     color: #cc0000;
 }
+
+.navbar {
+    background-color: rgb(0, 70, 125);
+}

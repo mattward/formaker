@@ -16,8 +16,13 @@
 
 <body th:fragment="body(content)">
 
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand" th:href="@{/}">Formaker demo</a>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+    <a class="navbar-brand" href="https://github.com/mattward/formaker">Formaker Demo</a>
+    <div class="navbar-nav">
+        <a th:href="@{/}" class="nav-item nav-link">Welcome</a>
+        <a th:href="@{/basic}" class="nav-item nav-link">Basic</a>
+        <a th:href="@{/more}" class="nav-item nav-link">More</a>
+    </div>
 </nav>
 
 <div th:insert="${content}" class="container">
