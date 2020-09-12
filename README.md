@@ -103,7 +103,7 @@ mvn exec:java -Dexec.mainClass=uk.wardm.livetest.TestHarnessApp -Dexec.classpath
 
 You may also run the demo from your favourite IDE, by running the main class `TestHarnessApp`.
 
-When the demo is running, you'll be able to use it with your browser at `http://localhost:8080/`
+When the demo is running, you'll be able to use it with your browser at http://localhost:8080/
 
 
 ## Installation and Setup
