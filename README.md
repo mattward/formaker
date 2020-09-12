@@ -116,7 +116,7 @@ The easiest way to use the library is from maven or gradle:
 <dependency>
   <groupId>uk.wardm</groupId>
   <artifactId>formaker</artifactId>
-  <version>1.0-alpha</version>
+  <version>1.0.1-alpha</version>
 </dependency>
 ```
 
