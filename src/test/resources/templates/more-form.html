@@ -14,7 +14,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col">
                 <form action="#" th:object="${form}" th:action="@{/more}" method="post">
                     <fm:form-fields fm:form="${form}"/>
                     <div>
@@ -23,13 +23,20 @@
                     </div>
                 </form>
             </div>
-            <div class="col-sm">
-                <h2>Form values</h2>
-                <div>season: <span th:text="${form.season}">value</span></div>
-                <div>truthIsOutThere: <span th:text="${form.truthIsOutThere}">value</span></div>
-                <div>liesAreOutThere: <span th:text="${form.liesAreOutThere}">value</span></div>
-
-                <div>seasonWithAnnotation: <span th:text="${form.seasonWithAnnotation}">value</span></div>
+            <div class="col">
+                <div th:if="${showValues}" class="card">
+                    <div class="card-body">
+                        <div class="card-title"><h3>Submitted values</h3></div>
+                        <div class="card-text">
+                            <table class="table table-striped">
+                                <tr th:each="entry : ${submittedValues}">
+                                    <td th:text="${entry.key}">Value</td>
+                                    <td th:text="${entry.value}">Value</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

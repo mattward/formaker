@@ -1,8 +1,7 @@
 form {
-    margin: 2rem -1rem;
     padding: 1rem;
-    background-color: #fefefe;
-    box-shadow: 3px 3px 6px #666;
+    background-color: rgba(0, 50, 150, 0.05);
+    border: 1px solid rgba(0, 50, 150, 0.2);
     border-radius: 0.3rem;
 }
 

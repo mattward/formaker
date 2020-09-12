@@ -2,6 +2,7 @@ package uk.wardm.livetest;
 
 import lombok.Data;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import uk.wardm.formaker.annotation.Select;
 
 import javax.validation.Valid;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 public class FurtherFeaturesFormController {
@@ -26,7 +29,18 @@ public class FurtherFeaturesFormController {
     }
 
     @PostMapping("/more")
-    public String processFormSubmission(@Valid @ModelAttribute("form") Form form, BindingResult bindingResult) {
+    public String processFormSubmission(
+            @Valid @ModelAttribute("form") Form form,
+            Model model,
+            BindingResult bindingResult) {
+        model.addAttribute("showValues", true);
+        Map<String, Object> values = new LinkedHashMap<>();
+        values.put("Season", form.getSeason());
+        values.put("Truth is out there", form.getTruthIsOutThere());
+        values.put("Lies are out there", form.isLiesAreOutThere());
+        values.put("Season with @Select", form.getSeasonWithAnnotation());
+        values.put("Boolean with @Select", form.isBooleanWithSelect());
+        model.addAttribute("submittedValues", values);
         return FORM_VIEW_NAME;
     }
 
