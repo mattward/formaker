@@ -48,10 +48,10 @@ public class ComponentFactoryImpl implements ComponentFactory {
         }
         else if (field.isAnnotationPresent(Select.class)) {
             Select select = field.getAnnotation(Select.class);
-            List<ChoiceField.Option> options = Arrays.stream(select.value()).
+            List<ChoiceField.Option> options = Arrays.stream(select.options()).
                     map(value -> new ChoiceField.Option(value, value)).
                     collect(Collectors.toList());
-            return Optional.of(new ChoiceField(field.getName(), label, options));
+            return Optional.of(new ChoiceField(field.getName(), label, options, select.style()));
         }
         else if (formType.equals(ChoiceField.class)) {
             List<ChoiceField.Option> options = new ArrayList<>();
@@ -64,7 +64,7 @@ public class ComponentFactoryImpl implements ComponentFactory {
                         map(value -> new ChoiceField.Option(value.toString(), value)).
                         collect(Collectors.toList());
             }
-            return Optional.of(new ChoiceField(field.getName(), label, options));
+            return Optional.of(new ChoiceField(field.getName(), label, options, ChoiceStyle.SELECT));
         }
         else if (formType.equals(NumberField.class)) {
             Long min = null;

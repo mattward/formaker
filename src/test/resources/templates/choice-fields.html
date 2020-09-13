@@ -7,16 +7,17 @@
 
 <body th:replace="layout::body(~{::main})">
 <main>
-    <h1>More!</h1>
-    <p>This shows an Enum being displayed as a &lt;select&gt; &mdash; there's no need to add the @Select
-    annotation as this is the default for enums.</p>
-    <p>Boolean (and boolean primitives) are treated the same way.</p>
+    <h1>Choice Fields</h1>
+    <p>This shows an Enum being displayed as a <code>&lt;select&gt;</code> &mdash; there's no need to add the
+        <code>@Select</code> annotation as this is the default for enums.</p>
+    <p><code>Boolean</code> (and <code>boolean</code> primitives) are treated the same way.</p>
+    <p>A <code>@Select</code> can have an optional <code>style</code> specified to favour radio buttons over a dropdown.</p>
 
     <p>Click &ldquo;Save&rdquo; to see the form values that get submitted by this form.</p>
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="#" th:object="${form}" th:action="@{/more}" method="post">
+                <form action="#" th:object="${form}" th:action="@{/choices}" method="post">
                     <fm:form-fields fm:form="${form}"/>
                     <div>
                         <input class="btn btn-primary" type="submit" value="Save">

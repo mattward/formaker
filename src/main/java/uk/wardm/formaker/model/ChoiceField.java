@@ -10,9 +10,13 @@ public class ChoiceField extends InputField {
     @Getter
     private List<Option> options;
 
-    public ChoiceField(String name, String label, List<Option> options) {
+    @Getter
+    private ChoiceStyle style;
+
+    public ChoiceField(String name, String label, List<Option> options, ChoiceStyle style) {
         super(name, label);
         this.options = options;
+        this.style = style;
     }
 
     @Data

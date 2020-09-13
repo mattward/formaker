@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import uk.wardm.formaker.annotation.Select;
+import uk.wardm.formaker.model.ChoiceStyle;
 
 import javax.validation.Valid;
 import java.util.LinkedHashMap;
@@ -16,19 +17,19 @@ import java.util.Map;
 @Controller
 public class FurtherFeaturesFormController {
 
-    public static final String FORM_VIEW_NAME = "more-form";
+    public static final String FORM_VIEW_NAME = "choice-fields";
 
     @ModelAttribute("form")
     public Form formObject() {
         return new Form();
     }
 
-    @GetMapping("/more")
+    @GetMapping("/choices")
     public String showForm(@ModelAttribute Form form) {
         return FORM_VIEW_NAME;
     }
 
-    @PostMapping("/more")
+    @PostMapping("/choices")
     public String processFormSubmission(
             @Valid @ModelAttribute("form") Form form,
             Model model,
@@ -39,7 +40,7 @@ public class FurtherFeaturesFormController {
         values.put("Truth is out there", form.getTruthIsOutThere());
         values.put("Lies are out there", form.isLiesAreOutThere());
         values.put("Season with @Select", form.getSeasonWithAnnotation());
-        values.put("Boolean with @Select", form.isBooleanWithSelect());
+        values.put("Boolean with ChoiceStyle.RADIO", form.isBooleanAsRadio());
         model.addAttribute("submittedValues", values);
         return FORM_VIEW_NAME;
     }
@@ -52,11 +53,11 @@ public class FurtherFeaturesFormController {
 
         // TODO: I'm not sure if you should be able to do this!?
         // Perhaps it's ok if they are valid values
-        @Select({"SPRING", "WINTER"})
+        @Select(options = {"SPRING", "WINTER"})
         private Season seasonWithAnnotation;
 
-        @Select({"yes", "no"})
-        private boolean booleanWithSelect;
+        @Select(options = {"yes", "no"}, style = ChoiceStyle.RADIO)
+        private boolean booleanAsRadio;
     }
 
     private static enum Season {

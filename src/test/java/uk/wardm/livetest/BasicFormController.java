@@ -12,7 +12,6 @@ import uk.wardm.formaker.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Controller
@@ -54,7 +53,7 @@ public class BasicFormController {
 
         private LocalDate favouriteDay;
 
-        @Select({ "true", "false" })
+        @Select(options = { "true", "false" })
         private Boolean weatherIsRainy;
 
         @TextBox

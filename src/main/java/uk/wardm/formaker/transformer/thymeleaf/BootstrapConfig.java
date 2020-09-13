@@ -28,4 +28,5 @@ public class BootstrapConfig {
     @Getter Map<String, String> textInputAttrs = new HashMap<>(singletonMap("class", "form-control"));
     @Getter Map<String, String> rangeControlAttrs = new HashMap<>(singletonMap("class", "custom-range"));
     @Getter Map<String, String> selectAttrs = new HashMap<>(singletonMap("class", "custom-select"));
+    @Getter Map<String, String> radioAttrs = new HashMap<>(singletonMap("class", "custom-control-input"));
 }
