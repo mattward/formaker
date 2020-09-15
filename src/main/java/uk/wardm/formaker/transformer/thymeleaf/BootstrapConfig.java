@@ -23,10 +23,13 @@ import static java.util.Collections.singletonMap;
  */
 public class BootstrapConfig {
     @Getter Map<String, String> formGroupAttrs = new HashMap<>(singletonMap("class", "form-group"));
+    @Getter Map<String, String> fieldSetAttrs = new HashMap<>(singletonMap("class", "form-group"));
     @Getter Map<String, String> fieldErrorsAttrs = new HashMap<>(singletonMap("class", "error small"));
     @Getter Map<String, String> textBoxAttrs = new HashMap<>(singletonMap("class", "form-control"));
     @Getter Map<String, String> textInputAttrs = new HashMap<>(singletonMap("class", "form-control"));
     @Getter Map<String, String> rangeControlAttrs = new HashMap<>(singletonMap("class", "custom-range"));
     @Getter Map<String, String> selectAttrs = new HashMap<>(singletonMap("class", "custom-select"));
+    @Getter Map<String, String> radioWrapperAttrs = new HashMap<>(singletonMap("class", "custom-control custom-radio"));
     @Getter Map<String, String> radioAttrs = new HashMap<>(singletonMap("class", "custom-control-input"));
+    @Getter Map<String, String> radioLabelAttrs = new HashMap<>(singletonMap("class", "custom-control-label"));
 }

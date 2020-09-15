@@ -16,3 +16,7 @@ body {
 .navbar {
     background-color: rgb(0, 70, 125);
 }
+
+legend {
+    font-size: 1rem;
+}

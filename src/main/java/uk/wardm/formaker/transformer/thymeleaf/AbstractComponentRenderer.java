@@ -7,6 +7,12 @@ import uk.wardm.formaker.model.*;
 
 import java.util.Arrays;
 
+/**
+ * An abstract Spring-orientated Thymeleaf {@link ComponentRenderer}.
+ *
+ * Use a concrete subclass such as {@link BootstrapComponentRenderer} or create your own
+ * implementation for specialised logic or markup.
+ */
 public abstract class AbstractComponentRenderer implements ComponentRenderer {
     private final boolean renderRendererWarnings;
 
@@ -36,7 +42,7 @@ public abstract class AbstractComponentRenderer implements ComponentRenderer {
             InputField inputField = (InputField) component;
 
             // Prologue, or start of wrapper
-            beforeComponent(modelFactory, model);
+            beforeComponent(modelFactory, model, component);
 
             // Field contents
             renderFieldLabel(context, modelFactory, model, inputField);
@@ -44,7 +50,7 @@ public abstract class AbstractComponentRenderer implements ComponentRenderer {
             renderFieldErrors(modelFactory, model, inputField);
 
             // Epilogue, or end of wrapper
-            afterComponent(modelFactory, model);
+            afterComponent(modelFactory, model, component);
 
             return model;
         }
@@ -61,9 +67,9 @@ public abstract class AbstractComponentRenderer implements ComponentRenderer {
     }
 
 
-    protected abstract void beforeComponent(IModelFactory modelFactory, IModel model);
+    protected abstract void beforeComponent(IModelFactory modelFactory, IModel model, Component component);
 
-    protected abstract void afterComponent(IModelFactory modelFactory, IModel model);
+    protected abstract void afterComponent(IModelFactory modelFactory, IModel model, Component component);
 
     protected abstract void renderFieldLabel(ITemplateContext context, IModelFactory modelFactory,
                                              IModel model, InputField inputField);
